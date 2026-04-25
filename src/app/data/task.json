@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "title": "Create project setup",
+    "description": "Initialize the app structure and install required dependencies.",
+    "status": "completed",
+    "priority": "high",
+    "user": "Nafiz Ahmed",
+    "userRole": "Frontend Lead",
+    "category": "Setup",
+    "dueDate": "2026-04-28",
+    "estimate": "3h",
+    "progress": 100
+  },
+  {
+    "id": 2,
+    "title": "Design task page",
+    "description": "Build the task page layout with a clean and responsive interface.",
+    "status": "in-progress",
+    "priority": "high",
+    "user": "Ayesha Rahman",
+    "userRole": "UI Designer",
+    "category": "Design",
+    "dueDate": "2026-05-02",
+    "estimate": "6h",
+    "progress": 64
+  },
+  {
+    "id": 3,
+    "title": "Add task data",
+    "description": "Create a JSON data source with sample tasks for the app.",
+    "status": "completed",
+    "priority": "medium",
+    "user": "Tanvir Hasan",
+    "userRole": "Data Owner",
+    "category": "Data",
+    "dueDate": "2026-04-30",
+    "estimate": "2h",
+    "progress": 100
+  },
+  {
+    "id": 4,
+    "title": "Connect data to UI",
+    "description": "Import the task JSON file and render the tasks dynamically.",
+    "status": "pending",
+    "priority": "medium",
+    "user": "Mim Chowdhury",
+    "userRole": "React Developer",
+    "category": "Integration",
+    "dueDate": "2026-05-05",
+    "estimate": "4h",
+    "progress": 25
+  },
+  {
+    "id": 5,
+    "title": "Test responsive view",
+    "description": "Check the task page on mobile and desktop screen sizes.",
+    "status": "pending",
+    "priority": "low",
+    "user": "Sabbir Khan",
+    "userRole": "QA Engineer",
+    "category": "Testing",
+    "dueDate": "2026-05-07",
+    "estimate": "2h",
+    "progress": 10
+  }
+]
