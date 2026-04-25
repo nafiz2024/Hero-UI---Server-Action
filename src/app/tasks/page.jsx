@@ -1,7 +1,9 @@
 import TaskCard from "@/component/TaskCard";
 import { getTasks } from "../lib/tasks";
+import AddTask from "@/component/AddTask";
+import { createTask } from "../lib/actions";
 
-const Page = async () => {
+const TaskPage = async () => {
   const tasks = await getTasks();
   const completedTasks = tasks.filter((task) => task.status === "completed");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
@@ -18,6 +20,9 @@ const Page = async () => {
             <p className="tasks-eyebrow">Project Control</p>
             <h1>Task Board</h1>
             <p>Track task status, priority, and assigned team members.</p>
+          </div>
+          <div className="">
+            <AddTask createTask = { createTask }></AddTask>
           </div>
           <div className="tasks-header-panel">
             <span>Sprint Progress</span>
@@ -54,4 +59,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default TaskPage;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 
 const subscribe = () => () => {};
@@ -27,8 +28,20 @@ const ThemeSwitch = () => {
       onClick={() => setTheme(nextTheme)}
     >
       <span className="theme-switch-track" aria-hidden="true">
-        <span className="theme-switch-icon theme-switch-sun" />
-        <span className="theme-switch-icon theme-switch-moon" />
+        <Image
+          className="theme-switch-icon"
+          src="/icons/sun.svg"
+          alt=""
+          width={16}
+          height={16}
+        />
+        <Image
+          className="theme-switch-icon"
+          src="/icons/moon.svg"
+          alt=""
+          width={16}
+          height={16}
+        />
         <span className="theme-switch-thumb" />
       </span>
       <span className="theme-switch-text">{isDark ? "Dark" : "Light"}</span>
