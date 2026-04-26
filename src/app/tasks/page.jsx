@@ -3,6 +3,78 @@ import { getTasks } from "../lib/tasks";
 import AddTask from "@/component/AddTask";
 import { createTask } from "../lib/actions";
 
+const TaskStatIcon = ({ tone }) => {
+  if (tone === "completed") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+        <path
+          d="m6.5 12.5 3.2 3.2 7.8-8.2"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+
+  if (tone === "progress") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5 15.5 9.5 11l3 3 6.5-7"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+
+  if (tone === "alert") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 7v5"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="2"
+        />
+        <path
+          d="M12 16h.01"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="2"
+        />
+        <path
+          d="M10.2 4.9 4.8 14.2A2 2 0 0 0 6.53 17h10.94a2 2 0 0 0 1.73-2.8l-5.47-9.3a2 2 0 0 0-3.46 0Z"
+          stroke="currentColor"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M6.5 8.5h11M6.5 12h11M6.5 15.5h7"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
+      <path
+        d="M5 5h14v14H5z"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};
+
 const TaskPage = async () => {
   const tasks = await getTasks();
   const completedTasks = tasks.filter((task) => task.status === "completed");
@@ -47,20 +119,44 @@ const TaskPage = async () => {
 
         <div className="tasks-stats">
           <article className="task-stat task-stat-total">
-            <span>Total Tasks</span>
+            <div className="task-stat-top">
+              <span>Total Tasks</span>
+              <span className="task-stat-icon task-stat-icon-total">
+                <TaskStatIcon tone="total" />
+              </span>
+            </div>
             <strong>{tasks.length}</strong>
+            <small>{pendingTasks.length} waiting in queue</small>
           </article>
           <article className="task-stat task-stat-completed">
-            <span>Completed</span>
+            <div className="task-stat-top">
+              <span>Completed</span>
+              <span className="task-stat-icon task-stat-icon-completed">
+                <TaskStatIcon tone="completed" />
+              </span>
+            </div>
             <strong>{completedTasks.length}</strong>
+            <small>{completedTasks.length}/{tasks.length} delivered</small>
           </article>
           <article className="task-stat task-stat-progress">
-            <span>In Progress</span>
+            <div className="task-stat-top">
+              <span>In Progress</span>
+              <span className="task-stat-icon task-stat-icon-progress">
+                <TaskStatIcon tone="progress" />
+              </span>
+            </div>
             <strong>{inProgressTasks.length}</strong>
+            <small>Active execution now</small>
           </article>
           <article className="task-stat task-stat-alert">
-            <span>High Priority</span>
+            <div className="task-stat-top">
+              <span>High Priority</span>
+              <span className="task-stat-icon task-stat-icon-alert">
+                <TaskStatIcon tone="alert" />
+              </span>
+            </div>
             <strong>{highPriorityTasks.length}</strong>
+            <small>Needs close attention</small>
           </article>
         </div>
 
