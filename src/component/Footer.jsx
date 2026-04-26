@@ -1,12 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
-const footerLinks = [
-  { href: "/", label: "Home" },
-  { href: "/tasks", label: "Task Board" },
-];
-
 const Footer = () => {
   return (
     <footer className="site-footer">
@@ -17,14 +10,6 @@ const Footer = () => {
             <p>TaskFlow Workspace</p>
             <small>Plan faster, track cleaner, ship with confidence.</small>
           </div>
-        </div>
-
-        <div className="site-footer-links" aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              {link.label}
-            </Link>
-          ))}
         </div>
 
         <div className="site-footer-meta">
