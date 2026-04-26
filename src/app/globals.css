@@ -2141,6 +2141,10 @@ body {
     gap: 14px;
   }
 
+  .site-nav-cta {
+    display: none;
+  }
+
   .site-nav-actions {
     min-width: 0;
   }
@@ -2294,6 +2298,17 @@ body {
   .home-secondary-action {
     width: 100%;
     min-width: 0;
+    white-space: normal;
+  }
+
+  .home-action-label {
+    font-size: 16px;
+  }
+
+  .home-action-icon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
   }
 
   .home-progress-panel {
@@ -2363,6 +2378,16 @@ body {
     min-height: 0;
   }
 
+  .task-stat strong,
+  .home-metric strong {
+    font-size: 36px;
+  }
+
+  .task-stat small,
+  .home-metric small {
+    font-size: 12px;
+  }
+
   .task-card-top,
   .task-card-footer {
     align-items: flex-start;
@@ -2404,5 +2429,16 @@ body {
 
   .task-card {
     min-height: 260px;
+  }
+
+  .task-card-body h2 {
+    font-size: 19px;
+  }
+
+  .task-priority,
+  .task-status,
+  .task-category,
+  .task-ticket {
+    max-width: 100%;
   }
 }
