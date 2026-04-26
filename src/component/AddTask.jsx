@@ -49,7 +49,7 @@ const AddTask = ({ createTask }) => {
         </Button>
         <Modal.Backdrop>
           <Modal.Container placement="auto">
-            <Modal.Dialog className="w-[calc(100vw-2rem)] overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] shadow-[0_32px_90px_rgba(15,23,42,0.22)] dark:border-slate-700/80 dark:bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)] dark:shadow-[0_36px_110px_rgba(0,0,0,0.52)] sm:max-w-xl">
+            <Modal.Dialog className="max-h-[calc(100vh-1.5rem)] w-[calc(100vw-2rem)] overflow-y-auto rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] shadow-[0_32px_90px_rgba(15,23,42,0.22)] dark:border-slate-700/80 dark:bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)] dark:shadow-[0_36px_110px_rgba(0,0,0,0.52)] sm:max-w-xl">
               <Modal.CloseTrigger />
 
               <Modal.Header className="flex items-start gap-4 border-b border-slate-200 px-6 py-6 dark:border-slate-800">

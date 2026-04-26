@@ -2136,6 +2136,23 @@ body {
 }
 
 @media (max-width: 920px) {
+  .site-nav-inner {
+    width: min(100% - 28px, 1180px);
+    gap: 14px;
+  }
+
+  .site-nav-actions {
+    min-width: 0;
+  }
+
+  .site-nav-links {
+    min-width: 0;
+  }
+
+  .site-nav-links a {
+    padding: 0 12px;
+  }
+
   .site-footer-inner {
     grid-template-columns: 1fr;
     justify-items: flex-start;
@@ -2165,6 +2182,11 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .home-metric,
+  .task-stat {
+    min-height: 118px;
+  }
+
   .tasks-header {
     grid-template-columns: 1fr;
   }
@@ -2188,8 +2210,10 @@ body {
 @media (max-width: 620px) {
   .site-nav-inner {
     width: min(100% - 28px, 1180px);
-    height: 66px;
-    gap: 14px;
+    height: auto;
+    min-height: 66px;
+    padding: 10px 0;
+    align-items: flex-start;
   }
 
   .site-brand-copy {
@@ -2203,6 +2227,9 @@ body {
   }
 
   .site-nav-actions {
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 8px;
   }
 
@@ -2224,13 +2251,14 @@ body {
   }
 
   .site-nav-links {
+    min-width: 0;
     gap: 3px;
     padding: 4px;
   }
 
   .site-nav-links a {
     min-height: 34px;
-    padding: 0 11px;
+    padding: 0 10px;
     font-size: 13px;
   }
 
@@ -2265,6 +2293,7 @@ body {
   .home-primary-action,
   .home-secondary-action {
     width: 100%;
+    min-width: 0;
   }
 
   .home-progress-panel {
@@ -2298,6 +2327,10 @@ body {
     grid-template-columns: 42px minmax(0, 1fr);
   }
 
+  .home-task-row p {
+    line-height: 1.45;
+  }
+
   .home-task-row-side {
     grid-column: 2;
     min-width: 0;
@@ -2323,6 +2356,35 @@ body {
   .tasks-header-highlights,
   .task-details {
     grid-template-columns: 1fr;
+  }
+
+  .task-stat,
+  .home-metric {
+    min-height: 0;
+  }
+
+  .task-card-top,
+  .task-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .task-card-top {
+    gap: 10px;
+  }
+
+  .task-card-footer {
+    gap: 12px;
+  }
+
+  .task-assignee {
+    width: 100%;
+  }
+
+  .task-user,
+  .task-user strong,
+  .task-user small {
+    min-width: 0;
   }
 
   .tasks-header-actions,
