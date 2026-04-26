@@ -32,10 +32,12 @@ const estimateOptions = [
 ];
 
 const fieldClassName =
-  "w-full rounded-2xl border border-slate-200 bg-white/95 text-slate-800 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus-within:border-teal-400 focus-within:shadow-[0_0_0_4px_rgba(45,212,191,0.16)]";
+  "w-full rounded-2xl border border-slate-200 bg-white/95 text-slate-800 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus-within:border-teal-400 focus-within:shadow-[0_0_0_4px_rgba(45,212,191,0.16)] dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-100 dark:shadow-[0_16px_36px_rgba(0,0,0,0.34)] dark:focus-within:border-teal-400 dark:focus-within:shadow-[0_0_0_4px_rgba(45,212,191,0.14)]";
+
+const fieldGroupClassName = "grid gap-2";
 
 const labelClassName =
-  "mb-2 block text-sm font-semibold tracking-[0.01em] text-slate-700";
+  "mb-2 block text-sm font-semibold tracking-[0.01em] text-slate-700 dark:text-slate-200";
 
 const AddTask = ({ createTask }) => {
   return (
@@ -47,18 +49,18 @@ const AddTask = ({ createTask }) => {
         </Button>
         <Modal.Backdrop>
           <Modal.Container placement="auto">
-            <Modal.Dialog className="w-[calc(100vw-2rem)] overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] shadow-[0_32px_90px_rgba(15,23,42,0.22)] sm:max-w-xl">
+            <Modal.Dialog className="w-[calc(100vw-2rem)] overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] shadow-[0_32px_90px_rgba(15,23,42,0.22)] dark:border-slate-700/80 dark:bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)] dark:shadow-[0_36px_110px_rgba(0,0,0,0.52)] sm:max-w-xl">
               <Modal.CloseTrigger />
 
-              <Modal.Header className="flex items-start gap-4 border-b border-slate-200 px-6 py-6">
-                <Modal.Icon className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-sm">
+              <Modal.Header className="flex items-start gap-4 border-b border-slate-200 px-6 py-6 dark:border-slate-800">
+                <Modal.Icon className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-sm dark:bg-emerald-500/12 dark:text-emerald-300 dark:shadow-[0_10px_22px_rgba(0,0,0,0.22)]">
                   <span className="text-xl leading-none">+</span>
                 </Modal.Icon>
                 <div className="min-w-0 flex-1">
-                  <Modal.Heading className="text-2xl font-extrabold leading-7 text-slate-900">
+                  <Modal.Heading className="text-2xl font-extrabold leading-7 text-slate-900 dark:text-slate-50">
                     Add New Task
                   </Modal.Heading>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                     Fill in the task details and assign it to the right team
                     member.
                   </p>
@@ -67,45 +69,59 @@ const AddTask = ({ createTask }) => {
 
               <Modal.Body className="px-6 py-5">
                 <form action={createTask} className="grid w-full gap-4">
-                  <TextField className={fieldClassName} name="title" type="text">
+                  <TextField className={fieldGroupClassName} name="title" type="text">
                     <Label className={labelClassName}>Task Title</Label>
-                    <Input placeholder="Enter task title" />
+                    <Input className={fieldClassName} placeholder="Enter task title" />
                   </TextField>
 
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <TextField className={fieldClassName} name="user" type="text">
+                    <TextField className={fieldGroupClassName} name="user" type="text">
                       <Label className={labelClassName}>Assigned To</Label>
-                      <Input placeholder="Team member name" />
+                      <Input
+                        className={fieldClassName}
+                        placeholder="Team member name"
+                      />
                     </TextField>
-                    <TextField className={fieldClassName} name="userRole" type="text">
+                    <TextField
+                      className={fieldGroupClassName}
+                      name="userRole"
+                      type="text"
+                    >
                       <Label className={labelClassName}>User Role</Label>
-                      <Input placeholder="Frontend Lead" />
+                      <Input className={fieldClassName} placeholder="Frontend Lead" />
                     </TextField>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <TextField
-                      className={fieldClassName}
+                      className={fieldGroupClassName}
                       name="category"
                       type="text"
                     >
                       <Label className={labelClassName}>Category</Label>
-                      <Input placeholder="Design, Setup, Testing" />
+                      <Input
+                        className={fieldClassName}
+                        placeholder="Design, Setup, Testing"
+                      />
                     </TextField>
-                    <TextField className={fieldClassName} name="dueDate" type="date">
+                    <TextField
+                      className={fieldGroupClassName}
+                      name="dueDate"
+                      type="date"
+                    >
                       <Label className={labelClassName}>Due Date</Label>
-                      <Input />
+                      <Input className={fieldClassName} />
                     </TextField>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-3">
                     <Select
-                      className={fieldClassName}
+                      className={fieldGroupClassName}
                       defaultSelectedKey="pending"
                       name="status"
                     >
                       <Label className={labelClassName}>Status</Label>
-                      <Select.Trigger>
+                      <Select.Trigger className={fieldClassName}>
                         <Select.Value />
                         <Select.Indicator />
                       </Select.Trigger>
@@ -121,12 +137,12 @@ const AddTask = ({ createTask }) => {
                     </Select>
 
                     <Select
-                      className={fieldClassName}
+                      className={fieldGroupClassName}
                       defaultSelectedKey="medium"
                       name="priority"
                     >
                       <Label className={labelClassName}>Priority</Label>
-                      <Select.Trigger>
+                      <Select.Trigger className={fieldClassName}>
                         <Select.Value />
                         <Select.Indicator />
                       </Select.Trigger>
@@ -142,12 +158,12 @@ const AddTask = ({ createTask }) => {
                     </Select>
 
                     <Select
-                      className={fieldClassName}
+                      className={fieldGroupClassName}
                       defaultSelectedKey="2h"
                       name="estimate"
                     >
                       <Label className={labelClassName}>Estimate</Label>
-                      <Select.Trigger>
+                      <Select.Trigger className={fieldClassName}>
                         <Select.Value />
                         <Select.Indicator />
                       </Select.Trigger>
@@ -164,23 +180,31 @@ const AddTask = ({ createTask }) => {
                   </div>
 
                   <TextField
-                    className={fieldClassName}
+                    className={fieldGroupClassName}
                     maxLength={3}
                     name="progress"
                     type="number"
                   >
                     <Label className={labelClassName}>Progress</Label>
-                    <Input max="100" min="0" placeholder="0 to 100" />
+                    <Input
+                      className={fieldClassName}
+                      max="100"
+                      min="0"
+                      placeholder="0 to 100"
+                    />
                   </TextField>
 
-                  <TextField className={fieldClassName} name="description">
+                  <TextField className={fieldGroupClassName} name="description">
                     <Label className={labelClassName}>Description</Label>
-                    <Input placeholder="Short task description" />
+                    <Input
+                      className={fieldClassName}
+                      placeholder="Short task description"
+                    />
                   </TextField>
 
-                  <div className="mt-2 flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:justify-end">
+                  <div className="mt-2 flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 dark:border-slate-800 sm:flex-row sm:justify-end">
                     <Button
-                      className="w-full rounded-full border border-slate-200 bg-slate-100 text-slate-700 shadow-none transition hover:bg-slate-200 sm:w-auto"
+                      className="w-full rounded-full border border-slate-200 bg-slate-100 text-slate-700 shadow-none transition hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 sm:w-auto"
                       slot="close"
                       variant="secondary"
                     >
