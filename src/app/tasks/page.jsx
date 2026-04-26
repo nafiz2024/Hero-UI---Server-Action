@@ -121,9 +121,9 @@ const TaskPage = async () => {
           <article className="task-stat task-stat-total">
             <div className="task-stat-top">
               <span>Total Tasks</span>
-              <span className="task-stat-icon task-stat-icon-total">
+              <div className="task-stat-icon task-stat-icon-total">
                 <TaskStatIcon tone="total" />
-              </span>
+              </div>
             </div>
             <strong>{tasks.length}</strong>
             <small>{pendingTasks.length} waiting in queue</small>
@@ -131,9 +131,9 @@ const TaskPage = async () => {
           <article className="task-stat task-stat-completed">
             <div className="task-stat-top">
               <span>Completed</span>
-              <span className="task-stat-icon task-stat-icon-completed">
+              <div className="task-stat-icon task-stat-icon-completed">
                 <TaskStatIcon tone="completed" />
-              </span>
+              </div>
             </div>
             <strong>{completedTasks.length}</strong>
             <small>{completedTasks.length}/{tasks.length} delivered</small>
@@ -141,9 +141,9 @@ const TaskPage = async () => {
           <article className="task-stat task-stat-progress">
             <div className="task-stat-top">
               <span>In Progress</span>
-              <span className="task-stat-icon task-stat-icon-progress">
+              <div className="task-stat-icon task-stat-icon-progress">
                 <TaskStatIcon tone="progress" />
-              </span>
+              </div>
             </div>
             <strong>{inProgressTasks.length}</strong>
             <small>Active execution now</small>
@@ -151,9 +151,9 @@ const TaskPage = async () => {
           <article className="task-stat task-stat-alert">
             <div className="task-stat-top">
               <span>High Priority</span>
-              <span className="task-stat-icon task-stat-icon-alert">
+              <div className="task-stat-icon task-stat-icon-alert">
                 <TaskStatIcon tone="alert" />
-              </span>
+              </div>
             </div>
             <strong>{highPriorityTasks.length}</strong>
             <small>Needs close attention</small>

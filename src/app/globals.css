@@ -1030,12 +1030,12 @@ body {
   gap: 14px;
 }
 
-.home-metric span,
+.home-metric-top > span,
 .home-metric small {
   display: block;
 }
 
-.home-metric span {
+.home-metric-top > span {
   color: #64748b;
   font-size: 13px;
   font-weight: 850;
@@ -1043,19 +1043,19 @@ body {
 
 .home-metric-icon {
   display: inline-flex;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 14px;
   line-height: 0;
 }
 
 .home-metric-icon svg {
   display: block;
-  width: 17px;
-  height: 17px;
+  width: 22px;
+  height: 22px;
 }
 
 .home-metric strong {
@@ -1615,7 +1615,7 @@ body {
   gap: 14px;
 }
 
-.task-stat span {
+.task-stat-top > span {
   display: block;
   color: #64748b;
   font-size: 13px;
@@ -1624,19 +1624,19 @@ body {
 
 .task-stat-icon {
   display: inline-flex;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 14px;
   line-height: 0;
 }
 
 .task-stat-icon svg {
   display: block;
-  width: 17px;
-  height: 17px;
+  width: 22px;
+  height: 22px;
 }
 
 .task-stat strong {

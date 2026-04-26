@@ -343,9 +343,9 @@ export default async function Home() {
             >
               <div className="home-metric-top">
                 <span>{metric.label}</span>
-                <span className={`home-metric-icon home-metric-icon-${metric.tone}`}>
+                <div className={`home-metric-icon home-metric-icon-${metric.tone}`}>
                   <MetricIcon tone={metric.tone} />
-                </span>
+                </div>
               </div>
               <strong>{metric.value}</strong>
               <small>{metric.detail}</small>
