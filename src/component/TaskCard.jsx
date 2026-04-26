@@ -29,21 +29,33 @@ const priorityMeta = {
 };
 
 const getInitials = (name) =>
-  name
+  (name || "Unassigned")
     .split(" ")
     .map((word) => word[0])
     .join("")
     .slice(0, 2)
     .toUpperCase();
 
-const formatDate = (date) =>
-  new Intl.DateTimeFormat("en", {
+const formatDate = (date) => {
+  if (!date) {
+    return "TBD";
+  }
+
+  const parsedDate = new Date(`${date}T00:00:00`);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return "TBD";
+  }
+
+  return new Intl.DateTimeFormat("en", {
     month: "short",
     day: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
+  }).format(parsedDate);
+};
 
 const TaskCard = ({ task }) => {
   const {
+    id,
     title,
     description,
     status,
@@ -57,12 +69,15 @@ const TaskCard = ({ task }) => {
   } = task;
   const currentStatus = statusMeta[status] || statusMeta.pending;
   const currentPriority = priorityMeta[priority] || priorityMeta.medium;
-  const safeProgress = Math.min(Math.max(progress || 0, 0), 100);
+  const safeProgress = Math.min(Math.max(Number(progress) || 0, 0), 100);
 
   return (
     <article className={`task-card task-card-${priority}`}>
       <div className="task-card-top">
-        <span className="task-category">{category}</span>
+        <div className="task-card-top-meta">
+          <span className="task-ticket">#{String(id).padStart(2, "0")}</span>
+          <span className="task-category">{category}</span>
+        </div>
         <span className={currentStatus.className}>{currentStatus.label}</span>
       </div>
 
@@ -90,6 +105,13 @@ const TaskCard = ({ task }) => {
           <div className="task-progress-track">
             <span style={{ width: `${safeProgress}%` }} />
           </div>
+        </div>
+
+        <div className="task-card-insight">
+          <span>{safeProgress >= 100 ? "Ready to ship" : "Current owner"}</span>
+          <strong>
+            {safeProgress >= 100 ? "Completed milestone" : userRole || "Unassigned"}
+          </strong>
         </div>
       </div>
 

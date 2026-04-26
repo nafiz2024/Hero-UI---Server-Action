@@ -7,7 +7,6 @@ import {
   ListBox,
   Modal,
   Select,
-  Surface,
   TextField,
 } from "@heroui/react";
 
@@ -15,6 +14,12 @@ const priorityOptions = [
   { id: "high", label: "High" },
   { id: "medium", label: "Medium" },
   { id: "low", label: "Low" },
+];
+
+const statusOptions = [
+  { id: "pending", label: "Pending" },
+  { id: "in-progress", label: "In Progress" },
+  { id: "completed", label: "Completed" },
 ];
 
 const estimateOptions = [
@@ -26,27 +31,34 @@ const estimateOptions = [
   { id: "8h", label: "8h" },
 ];
 
+const fieldClassName =
+  "w-full rounded-2xl border border-slate-200 bg-white/95 text-slate-800 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition focus-within:border-teal-400 focus-within:shadow-[0_0_0_4px_rgba(45,212,191,0.16)]";
+
+const labelClassName =
+  "mb-2 block text-sm font-semibold tracking-[0.01em] text-slate-700";
+
 const AddTask = ({ createTask }) => {
   return (
-    <div className="flex w-full justify-end">
+    <div className="tasks-add-task">
       <Modal>
-        <Button className="min-w-32 justify-center" variant="secondary">
-          Add Task
+        <Button className="tasks-add-task-button" variant="primary">
+          <span className="tasks-add-task-icon">+</span>
+          <span>Add Task</span>
         </Button>
         <Modal.Backdrop>
           <Modal.Container placement="auto">
-            <Modal.Dialog className="w-[calc(100vw-2rem)] sm:max-w-lg">
+            <Modal.Dialog className="w-[calc(100vw-2rem)] overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] shadow-[0_32px_90px_rgba(15,23,42,0.22)] sm:max-w-xl">
               <Modal.CloseTrigger />
 
-              <Modal.Header className="flex items-start gap-4 border-b border-default-200 px-6 py-5">
-                <Modal.Icon className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+              <Modal.Header className="flex items-start gap-4 border-b border-slate-200 px-6 py-6">
+                <Modal.Icon className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-sm">
                   <span className="text-xl leading-none">+</span>
                 </Modal.Icon>
                 <div className="min-w-0 flex-1">
-                  <Modal.Heading className="text-xl font-bold leading-7">
+                  <Modal.Heading className="text-2xl font-extrabold leading-7 text-slate-900">
                     Add New Task
                   </Modal.Heading>
-                  <p className="mt-1.5 text-sm leading-6 text-muted">
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
                     Fill in the task details and assign it to the right team
                     member.
                   </p>
@@ -54,91 +66,135 @@ const AddTask = ({ createTask }) => {
               </Modal.Header>
 
               <Modal.Body className="px-6 py-5">
-                <Surface className="w-full" variant="default">
-                  <form action={createTask} className="grid w-full gap-4">
-                    <TextField className="w-full" name="title" type="text">
-                      <Label>Task Title</Label>
-                      <Input placeholder="Enter task title" />
+                <form action={createTask} className="grid w-full gap-4">
+                  <TextField className={fieldClassName} name="title" type="text">
+                    <Label className={labelClassName}>Task Title</Label>
+                    <Input placeholder="Enter task title" />
+                  </TextField>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <TextField className={fieldClassName} name="user" type="text">
+                      <Label className={labelClassName}>Assigned To</Label>
+                      <Input placeholder="Team member name" />
                     </TextField>
-
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <TextField className="w-full" name="assignee" type="text">
-                        <Label>Assigned To</Label>
-                        <Input placeholder="Team member" />
-                      </TextField>
-                      <TextField className="w-full" name="dueDate" type="date">
-                        <Label>Due Date</Label>
-                        <Input />
-                      </TextField>
-                    </div>
-
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <Select
-                        className="w-full"
-                        defaultSelectedKey="medium"
-                        name="priority"
-                      >
-                        <Label>Priority</Label>
-                        <Select.Trigger>
-                          <Select.Value />
-                          <Select.Indicator />
-                        </Select.Trigger>
-                        <Select.Popover>
-                          <ListBox>
-                            {priorityOptions.map((option) => (
-                              <ListBox.Item id={option.id} key={option.id}>
-                                {option.label}
-                              </ListBox.Item>
-                            ))}
-                          </ListBox>
-                        </Select.Popover>
-                      </Select>
-
-                      <Select
-                        className="w-full"
-                        defaultSelectedKey="2h"
-                        name="estimate"
-                      >
-                        <Label>Estimate</Label>
-                        <Select.Trigger>
-                          <Select.Value />
-                          <Select.Indicator />
-                        </Select.Trigger>
-                        <Select.Popover>
-                          <ListBox>
-                            {estimateOptions.map((option) => (
-                              <ListBox.Item id={option.id} key={option.id}>
-                                {option.label}
-                              </ListBox.Item>
-                            ))}
-                          </ListBox>
-                        </Select.Popover>
-                      </Select>
-                    </div>
-
-                    <TextField className="w-full" name="description">
-                      <Label>Description</Label>
-                      <Input placeholder="Short task description" />
+                    <TextField className={fieldClassName} name="userRole" type="text">
+                      <Label className={labelClassName}>User Role</Label>
+                      <Input placeholder="Frontend Lead" />
                     </TextField>
+                  </div>
 
-                    <div className="flex flex-col-reverse gap-3 border-t border-default-200 px-6 py-4 sm:flex-row sm:justify-end">
-                      <Button
-                        className="w-full sm:w-auto"
-                        slot="close"
-                        variant="secondary"
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        className="w-full sm:w-auto"
-                        slot="close"
-                        type="submit"
-                      >
-                        Save Task
-                      </Button>
-                    </div>
-                  </form>
-                </Surface>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <TextField
+                      className={fieldClassName}
+                      name="category"
+                      type="text"
+                    >
+                      <Label className={labelClassName}>Category</Label>
+                      <Input placeholder="Design, Setup, Testing" />
+                    </TextField>
+                    <TextField className={fieldClassName} name="dueDate" type="date">
+                      <Label className={labelClassName}>Due Date</Label>
+                      <Input />
+                    </TextField>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <Select
+                      className={fieldClassName}
+                      defaultSelectedKey="pending"
+                      name="status"
+                    >
+                      <Label className={labelClassName}>Status</Label>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          {statusOptions.map((option) => (
+                            <ListBox.Item id={option.id} key={option.id}>
+                              {option.label}
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
+
+                    <Select
+                      className={fieldClassName}
+                      defaultSelectedKey="medium"
+                      name="priority"
+                    >
+                      <Label className={labelClassName}>Priority</Label>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          {priorityOptions.map((option) => (
+                            <ListBox.Item id={option.id} key={option.id}>
+                              {option.label}
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
+
+                    <Select
+                      className={fieldClassName}
+                      defaultSelectedKey="2h"
+                      name="estimate"
+                    >
+                      <Label className={labelClassName}>Estimate</Label>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          {estimateOptions.map((option) => (
+                            <ListBox.Item id={option.id} key={option.id}>
+                              {option.label}
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
+                  </div>
+
+                  <TextField
+                    className={fieldClassName}
+                    maxLength={3}
+                    name="progress"
+                    type="number"
+                  >
+                    <Label className={labelClassName}>Progress</Label>
+                    <Input max="100" min="0" placeholder="0 to 100" />
+                  </TextField>
+
+                  <TextField className={fieldClassName} name="description">
+                    <Label className={labelClassName}>Description</Label>
+                    <Input placeholder="Short task description" />
+                  </TextField>
+
+                  <div className="mt-2 flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:justify-end">
+                    <Button
+                      className="w-full rounded-full border border-slate-200 bg-slate-100 text-slate-700 shadow-none transition hover:bg-slate-200 sm:w-auto"
+                      slot="close"
+                      variant="secondary"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="w-full rounded-full bg-[linear-gradient(135deg,#0f766e,#2563eb)] px-6 font-semibold text-white shadow-[0_14px_28px_rgba(37,99,235,0.22)] sm:w-auto"
+                      slot="close"
+                      type="submit"
+                    >
+                      Save Task
+                    </Button>
+                  </div>
+                </form>
               </Modal.Body>
             </Modal.Dialog>
           </Modal.Container>
